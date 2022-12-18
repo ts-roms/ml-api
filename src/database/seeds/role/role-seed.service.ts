@@ -42,7 +42,6 @@ export class RoleSeedService {
       );
     }
 
-
     const countAdmin = await this.repository.count({
       where: {
         id: RoleEnum.admin,
