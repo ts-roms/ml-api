@@ -27,6 +27,22 @@ export class RoleSeedService {
       );
     }
 
+    const countManager = await this.repository.count({
+      where: {
+        id: RoleEnum.manager,
+      },
+    });
+
+    if (countManager === 0) {
+      await this.repository.save(
+        this.repository.create({
+          id: RoleEnum.manager,
+          name: 'Manager',
+        }),
+      );
+    }
+
+
     const countAdmin = await this.repository.count({
       where: {
         id: RoleEnum.admin,
@@ -38,6 +54,21 @@ export class RoleSeedService {
         this.repository.create({
           id: RoleEnum.admin,
           name: 'Admin',
+        }),
+      );
+    }
+
+    const countSuperAdmin = await this.repository.count({
+      where: {
+        id: RoleEnum.superadmin,
+      },
+    });
+
+    if (countSuperAdmin === 0) {
+      await this.repository.save(
+        this.repository.create({
+          id: RoleEnum.superadmin,
+          name: 'SuperAdmin',
         }),
       );
     }
